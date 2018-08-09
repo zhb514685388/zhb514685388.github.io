@@ -1,3 +1,9 @@
+---
+title: MYSQL数据库笔记(1)
+date: 2018-08-09 14:29:40
+tags:
+---
+
 mysql -uroot -p密码   登入数据库
 
 use 数据库名
