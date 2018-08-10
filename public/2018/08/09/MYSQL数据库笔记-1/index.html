@@ -7,17 +7,17 @@
   
   <title>MYSQL数据库笔记(1) | 红兵的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；5.修改数据库名：表可以修改名，数据库不能修改名。6、建表： create table stu(">
+  <meta name="description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL数据库笔记(1)">
 <meta property="og:url" content="http://yoursite.com/2018/08/09/MYSQL数据库笔记-1/index.html">
 <meta property="og:site_name" content="红兵的博客">
-<meta property="og:description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；5.修改数据库名：表可以修改名，数据库不能修改名。6、建表： create table stu(">
+<meta property="og:description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-09T06:30:11.609Z">
+<meta property="og:updated_time" content="2018-08-09T06:39:40.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL数据库笔记(1)">
-<meta name="twitter:description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；5.修改数据库名：表可以修改名，数据库不能修改名。6、建表： create table stu(">
+<meta name="twitter:description" content="mysql -uroot -p密码   登入数据库 use 数据库名 1.显示所有数据库：show databases;2.显示数据库下的表：show tables;3.创建数据库：create database 库名 [charset utf-8]；4.删除数据库：drop database 库名；">
   
     <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
   
@@ -88,7 +88,7 @@
       
         <p>mysql -uroot -p密码   登入数据库</p>
 <p>use 数据库名</p>
-<p>1.显示所有数据库：show databases;<br>2.显示数据库下的表：show tables;<br>3.创建数据库：create database 库名 [charset utf-8]；<br>4.删除数据库：drop database 库名；<br>5.修改数据库名：表可以修改名，数据库不能修改名。<br>6、建表： create table stu(<br>          id int,<br>          sname,varchar(32<br>          );<br>7、删除表：drop table 表名；<br>8、修改表名：rename table stu to newstu;<br>9、表中插入数据：(最好用这种）<br>insert into newstu(id,sname) values(1,’张三’);<br>insert into newstu(id,sname) values(2,’李四’);<br>insert into newstu(id,sname) values(3,’王五’);<br>或者<br>insert into newstu values(4,’赵六’),(5,’七’);<br>10、清空表中数据：truncate 表名；</p>
+<p>1.显示所有数据库：show databases;<br>2.显示数据库下的表：show tables;<br>3.创建数据库：create database 库名 [charset utf-8]；<br>4.删除数据库：drop database 库名；<br><a id="more"></a><br>5.修改数据库名：表可以修改名，数据库不能修改名。<br>6、建表： create table stu(<br>          id int,<br>          sname,varchar(32<br>          );<br>7、删除表：drop table 表名；<br>8、修改表名：rename table stu to newstu;<br>9、表中插入数据：(最好用这种）<br>insert into newstu(id,sname) values(1,’张三’);<br>insert into newstu(id,sname) values(2,’李四’);<br>insert into newstu(id,sname) values(3,’王五’);<br>或者<br>insert into newstu values(4,’赵六’),(5,’七’);<br>10、清空表中数据：truncate 表名；</p>
 <p>11、truncate和delete的区别：<br>truncate相当于删表再重建一张同样结构的表，操作后得到一张全新表。<br>而delete是从删除所有的层面来操作的，把数据删除</p>
 <p>12、windows系统中若出现乱码：set names gbk(编码方式）</p>
 <p>tee /home/zhb/mysql/a.sql(选择文件路径) ：用来记录用户操作记录的</p>
@@ -214,7 +214,7 @@ intro varchar(1500)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/09/MYSQL数据库笔记-1/" data-id="cjkm6olpt0000eya37968j5lv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/09/MYSQL数据库笔记-1/" data-id="cjknihm670004c0a34wngvcvu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,6 +222,15 @@ intro varchar(1500)
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MYSQL数据库笔记_2之分组函数及查询函数
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/09/再测试下/" id="article-nav-older" class="article-nav-link-wrap">
@@ -261,6 +270,10 @@ intro varchar(1500)
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/">MYSQL数据库笔记_2之分组函数及查询函数</a>
+          </li>
         
           <li>
             <a href="/2018/08/09/MYSQL数据库笔记-1/">MYSQL数据库笔记(1)</a>

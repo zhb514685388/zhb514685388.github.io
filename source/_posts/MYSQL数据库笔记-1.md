@@ -12,6 +12,7 @@ use 数据库名
 2.显示数据库下的表：show tables;
 3.创建数据库：create database 库名 [charset utf-8]；
 4.删除数据库：drop database 库名；
+<!--more-->
 5.修改数据库名：表可以修改名，数据库不能修改名。
 6、建表： create table stu(
           id int,
