@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MYSQL数据库笔记_8之约束 | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="约束 1.什么是约束，为什么要使用约束？ - 约束对应的英语单词：constraint - 约束实际上就是表中数据的限制条件 - 表在设计的时候加入约束的目的就是为了保证表中的记录完整有效。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库笔记_8之约束">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-8之约束/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="约束 1.什么是约束，为什么要使用约束？ - 约束对应的英语单词：constraint - 约束实际上就是表中数据的限制条件 - 表在设计的时候加入约束的目的就是为了保证表中的记录完整有效。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T12:41:24.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库笔记_8之约束">
+<meta name="twitter:description" content="约束 1.什么是约束，为什么要使用约束？ - 约束对应的英语单词：constraint - 约束实际上就是表中数据的限制条件 - 表在设计的时候加入约束的目的就是为了保证表中的记录完整有效。">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MYSQL数据库笔记-8之约束" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/10/MYSQL数据库笔记-8之约束/" class="article-date">
+  <time datetime="2018-08-10T08:21:05.000Z" itemprop="datePublished">2018-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库笔记_8之约束
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>约束</p>
+<p>1.什么是约束，为什么要使用约束？</p>
+<pre><code>- 约束对应的英语单词：constraint
+- 约束实际上就是表中数据的限制条件
+- 表在设计的时候加入约束的目的就是为了保证表中的记录完整有效。
+</code></pre><a id="more"></a>
+<p>2、约束包括哪些？</p>
+<pre><code>- 非空约束         not null
+- 唯一性约束          unique
+- 主键约束          primary key  PK
+- 外键约束          foreign key  FK
+- 检查约束  mysql不支持，oracle支持
+</code></pre><p>3、非空约束</p>
+<pre><code>- not null约束的字段，不能为Null，必须给定具体数据
+
+ 创建表，给字段添加非空约束（用户名不能为空）
+drop table if exists t_user;
+create table t_user(
+    id int(10),
+    name varchar(32) not null,
+    email varchar(128)
+);
+</code></pre><p>4、唯一性约束</p>
+<pre><code>- unique约束的字段具有唯一性，不可重复
+
+//列级约束  
+创建用户，保证邮箱地址唯一
+drop table if exists t_user;
+create table t_user(
+    id int(10),
+    name varchar(32),
+    email varchar(128) unique
+);
+
+unique约束的字段不能重复，但可以为Null
+
+
+drop table if exists t_user;
+//表级约束
+create table t_user(
+    id int(10),
+    name varchar(32) not null,
+    email varchar(128), 
+    unique(email)
+);
+
+使用表级约束给多个字段联合添加约束(以下表示name和eamil两个字段联合唯一)
+</code></pre><p>drop table if exists t_user;</p>
+<p>create table t_user(<br>    id int(10),<br>    name varchar(32) not null,<br>    email varchar(128),<br>    unique(name,email)<br>);</p>
+<p>insert into t_user(id,name,email) values(1,’abc’,<a href="mailto:&#39;abc@qq.com" target="_blank" rel="noopener">&#39;abc@qq.com</a>‘);//OK<br>insert into t_user(id,name,email) values(2,’abc’,<a href="mailto:&#39;def@qq.com" target="_blank" rel="noopener">&#39;def@qq.com</a>‘);//OK<br>insert into t_user(id,name,email) values(3,’def’,<a href="mailto:&#39;abc@qq.com" target="_blank" rel="noopener">&#39;abc@qq.com</a>‘);//OK<br>insert into t_user(id,name,email) values(4,’def’,<a href="mailto:&#39;abc@qq.com" target="_blank" rel="noopener">&#39;abc@qq.com</a>‘);//FAIL 跟第三个重复</p>
+<pre><code>- 表级约束还可以给约束起名字，
+- 为什么 要起名字？ 因为以后要通过名字来删除这个约束
+</code></pre><p>drop table if exists t_user;</p>
+<p>create table t_user(<br>    id int(10),<br>    name varchar(32) not null,<br>    email varchar(128),<br>    constraint t_user_email_name_unique unique(name,email)<br>);<br>//查询名字<br>mysql&gt; use information_schema;</p>
+<p>Database changed<br>mysql&gt; show tables;<br>+—————————————+<br>| Tables_in_information_schema          |<br>+—————————————+<br>| CHARACTER_SETS                        |<br>| COLLATIONS                            |<br>| COLLATION_CHARACTER_SET_APPLICABILITY |<br>| COLUMNS                               |<br>| COLUMN_PRIVILEGES                     |<br>| ENGINES                               |<br>| EVENTS                                |<br>| FILES                                 |<br>| GLOBAL_STATUS                         |<br>| GLOBAL_VARIABLES                      |<br>| KEY_COLUMN_USAGE                      |<br>| OPTIMIZER_TRACE                       |<br>| PARAMETERS                            |<br>| PARTITIONS                            |<br>| PLUGINS                               |<br>| PROCESSLIST                           |<br>| PROFILING                             |<br>| REFERENTIAL_CONSTRAINTS               |<br>| ROUTINES                              |<br>| SCHEMATA                              |<br>| SCHEMA_PRIVILEGES                     |<br>| SESSION_STATUS                        |<br>| SESSION_VARIABLES                     |<br>| STATISTICS                            |<br>| TABLES                                |<br>| TABLESPACES                           |<br>| TABLE_CONSTRAINTS                     |<br>| TABLE_PRIVILEGES                      |<br>| TRIGGERS                              |<br>| USER_PRIVILEGES                       |<br>| VIEWS                                 |<br>| INNODB_LOCKS                          |<br>| INNODB_TRX                            |<br>| INNODB_SYS_DATAFILES                  |<br>| INNODB_FT_CONFIG                      |<br>| INNODB_SYS_VIRTUAL                    |<br>| INNODB_CMP                            |<br>| INNODB_FT_BEING_DELETED               |<br>| INNODB_CMP_RESET                      |<br>| INNODB_CMP_PER_INDEX                  |<br>| INNODB_CMPMEM_RESET                   |<br>| INNODB_FT_DELETED                     |<br>| INNODB_BUFFER_PAGE_LRU                |<br>| INNODB_LOCK_WAITS                     |<br>| INNODB_TEMP_TABLE_INFO                |<br>| INNODB_SYS_INDEXES                    |<br>| INNODB_SYS_TABLES                     |<br>| INNODB_SYS_FIELDS                     |<br>| INNODB_CMP_PER_INDEX_RESET            |<br>| INNODB_BUFFER_PAGE                    |<br>| INNODB_FT_DEFAULT_STOPWORD            |<br>| INNODB_FT_INDEX_TABLE                 |<br>| INNODB_FT_INDEX_CACHE                 |<br>| INNODB_SYS_TABLESPACES                |<br>| INNODB_METRICS                        |<br>| INNODB_SYS_FOREIGN_COLS               |<br>| INNODB_CMPMEM                         |<br>| INNODB_BUFFER_POOL_STATS              |<br>| INNODB_SYS_COLUMNS                    |<br>| INNODB_SYS_FOREIGN                    |<br>| INNODB_SYS_TABLESTATS                 |<br>+—————————————+</p>
+<p>mysql&gt; desc table_constraints;（该表格中专门存储约束信息）<br>+——————–+————–+——+—–+———+——-+<br>| Field              | Type         | Null | Key | Default | Extra |<br>+——————–+————–+——+—–+———+——-+<br>| CONSTRAINT_CATALOG | varchar(512) | NO   |     |         |       |<br>| CONSTRAINT_SCHEMA  | varchar(64)  | NO   |     |         |       |<br>| CONSTRAINT_NAME    | varchar(64)  | NO   |     |         |       |<br>| TABLE_SCHEMA       | varchar(64)  | NO   |     |         |       |<br>| TABLE_NAME         | varchar(64)  | NO   |     |         |       |<br>| CONSTRAINT_TYPE    | varchar(64)  | NO   |     |         |       |<br>+——————–+————–+——+—–+———+——-+<br>6 rows in set (0.00 sec)</p>
+<p>mysql&gt; select constraint_name from table_constraints where table_name=’t_user’;<br>+————————–+<br>| constraint_name          |<br>+————————–+<br>| t_user_email_name_unique |<br>+————————–+</p>
+<p>5、not null和unique可以联合使用吗？</p>
+<pre><code>- 可以联合使用
+- 被not null unique约束的字段，既不能为空，也不能重复
+- 例：
+</code></pre><p>drop table if exists t_user;<br>create table t_user(<br>    id int(10),<br>    name varchar(32) not null unique<br>);</p>
+<p>6、主键约束-primary key 简称PK<br>    6.1主键涉及到的术语：<br>        -主键约束</p>
+<pre><code>    - 主键字段
+    - 主键值
+6.2 以上的关系：
+    表中的某个字段添加主键约束之后，该字段称为主键字段，主键字段中出现的每个值都被称为主键值。
+
+6.3 给某个字段添加主键约束之后，该字段不能重复，也不能为空。效果和“not null unique&quot;约束相同，但本质不同，主键字段还会默认添加”索引-index“
+
+6.4 和张表应该有主键字段，若没有，表示这张表是无效的。
+”主键值“是当前行数据的唯一标识。”主键值“是当前行数据的身份证号。
+即使表中现行记录相关的数据是相同的，但是由于主键值不同，我们认为这两行是完全不同的数据。
+
+6.5  给一个字段添加主键约束，称为单一主键。
+单一主键：
+//列级约束(这种方式用的多)
+    drop table if exists t_user;
+    create table t_user(
+        id int(10) primary key,
+        name varchar(32)
+    );
+
+单一主键：
+//表级约束
+    drop table if exists t_user;
+    create table t_user(
+        id int(10) ,
+        name varchar(32)，
+        primary key(id)
+    );
+
+
+单一主键：
+//表级约束
+//起名
+    drop table if exists t_user;
+    create table t_user(
+        id int(10) ,
+        name varchar(32)，
+        constraint t_user_id_pk primary key(id)
+    );
+
+6.6 给多个字段添加一个主键约束，称为复合主键。
+复合主键
+//表级约束
+drop table if exists t_user;
+    create table t_user(
+        id int(10) ,
+        name varchar(32)，
+        email varchar(128),
+        primary key(id，name)
+    );
+
+
+复合主键
+//表级约束
+//起名
+drop table if exists t_user;
+    create table t_user(
+        id int(10) ,
+        name varchar(32)，
+        email varchar(128),
+        constraint t_user_id_pk primary key(id，name)
+    );
+
+6.7 无论是单一主键还是复合主键，一张表主键约束只能有一个。
+
+6.8 主键根据性质分类：
+    - 自然主键
+         * 主键值若是一个自然数，这自然数和当前表的业务没有任何关系，这种主键叫做自然主键。
+    - 业务主键
+        * 主键值若和当前表中业务紧密相关的，这种主键值称为业务主键，当前业务数据发生改变的时候，主键值通常会受到影响，所以业务主键使用较少，大部分都 是使用自然主键。
+
+6.9  在    MYSQL数据库管理系统中提供了一个自增的数字，专门用来自动生成主键值。
+主键值不需要用户维护，也不需要用户提供，自动生成。数字默认从1开始，以1递增
+1,2,3,4,5,6
+drop table if exists t_user;
+create table t_user(
+    id int(10) primary key auto_increment,
+    name varchar(32)，
+);
+</code></pre><p>7、外键约束-foreign key 简称 FK</p>
+<pre><code>7.1 外键涉及到的术语：
+    -外键约束
+    - 外键字段
+    - 外键值
+
+7.2 以上的关系：
+    表中的某个字段添加外键约束之后，该字段称为外键字段，外键字段中出现的每个值都被称为外键值。
+
+7.3 外键分为单一外键、复合外键
+
+7.4 一张表中可以有多个外键字段
+
+7.5 分析场景：
+请设计数据库表用来存储学生和班级信息，给出两种解决方案：
+学生信息和班级信息之间的关系，一个班级对应多个学生，这是典型的一对多的关系。
+
+第一种 ：将学生信息和班级信息存储到一张表中
+学生信息表t_student
+sno        sname      classno     cname
+-----------------------------------------
+1           jack         100      一班
+2           zhan         100      一班
+3           duck         200      二班
+4           fork         200      二班
+5           zhen         300      三班
+6           luck         400      三班
+以上的设计缺点：数据冗余
+
+第二种 ：学生信息和班级信息分开存储，学生表+班级表
+学生表t_student
+sno(pk)      sname      classno(fk)
+--------------------------
+1           a           100
+2           b           100
+3           c           200
+4           d           200
+5           e              300
+6           f            300
+
+班级表t_class
+cno(pk)      cname
+--------------------
+100          一班       
+200          二班
+300          三班
+
+结论：为了保证t_student表中的classno字段中的    数据必须来自于t_class表中cno字段中的数据，有必要给t_student表中的classno字段添加外键约束，classno字段被称为外键约束，字段中的100 200 300称为外键值，classno这里是单一外键字段。
+
+注：外键值可以为NULL
+
+注：外键字段去引用一张表的某个字段的时候，被引用的字段必须具有uniuqe约束。
+
+注：有了外键引用之后，表分了父表和子表，以上父表是班级表，子表是学生表 
+创建时先创建父表，再创建子表。删除时先删除子表中的数据，再删除父表中的数据，插入时先插入父表中的数据，再插入子表中的数据。 
+
+-----------------------SQL文----------------------------------
+</code></pre><p>drop table if exists t_student;<br>drop table if exists t_class;<br>create table t_class(<br>    cno int(3) primary key,<br>    cname varchar(32) not null<br>);<br>create table t_student(<br>    sno int(3) primary key,<br>    sname varchar(32) not null,<br>    classno int(3),<br>    constraint t_student_classno_fk foreign key(classno) references t_class(cno)<br>);<br>insert into t_class(cno,cname) values(100,’一班’);<br>insert into t_class(cno,cname) values(200,’二班’);<br>insert into t_class(cno,cname) values(300,’三班’);<br>insert into t_student(sno,sname,classno) values(1,’a’,100);<br>insert into t_student(sno,sname,classno) values(2,’b’,100);<br>insert into t_student(sno,sname,classno) values(3,’c’,200);<br>insert into t_student(sno,sname,classno) values(4,’d’,200);<br>insert into t_student(sno,sname,classno) values(5,’e’,300);<br>insert into t_student(sno,sname,classno) values(6,’f’,300);<br>select <em> from t_class;<br>select </em> from t_student;</p>
+<p>重点：典型的一对多的设计是在多的一方加外键</p>
+<p>8、级联更新和级联删除</p>
+<pre><code>- 添加级联更新和删除时候，需要在外键约束后面添加
+
+- 在删除父表中数据的时候，级联删除子表中的数据    on delete cascade
+    - 删除外键约束
+        alter table t_student drop foreign key t_student_classno_fk;
+    - 添加外键约束
+        alter table t_student add constraint t_student_classno_fk foreign key(classno) references t_class(cno) on delete cascade;
+
+- 在更新父表中数据的时候，级联更新子表中的数据       on update cascade
+    - 删除外键约束
+        alter table t_student drop foreign key t_student_classno_fk;
+    - 添加外键约束
+        alter table t_student add constraint t_student_classno_fk foreign key(classno) references t_class(cno) on update cascade;
+
+- 以上的级联更新和级联删除，谨慎使用，因为级联操作会将数据改变或者删除
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-8之约束/" data-id="cjm0lu4vu0007wlfialjjft8e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/13/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MYSQL数据库笔记_7之表的创建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

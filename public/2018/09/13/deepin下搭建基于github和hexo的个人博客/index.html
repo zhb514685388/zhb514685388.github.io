@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>deepin下搭建基于github和hexo的个人博客 | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="搭建步骤：1、 安装git $ sudo apt-get install git  查看git版本 $ git version">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deepin下搭建基于github和hexo的个人博客">
+<meta property="og:url" content="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="搭建步骤：1、 安装git $ sudo apt-get install git  查看git版本 $ git version">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T13:16:21.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="deepin下搭建基于github和hexo的个人博客">
+<meta name="twitter:description" content="搭建步骤：1、 安装git $ sudo apt-get install git  查看git版本 $ git version">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-deepin下搭建基于github和hexo的个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/" class="article-date">
+  <time datetime="2018-09-13T13:11:19.000Z" itemprop="datePublished">2018-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      deepin下搭建基于github和hexo的个人博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>搭建步骤：<br>1、 安装git</p>
+<p>$ sudo apt-get install git </p>
+<p>查看git版本</p>
+<p>$ git version<br><a id="more"></a><br>2、 安装Node.js及npm </p>
+<p>a. 可以直接命令安装,但是命令安装的不是最新版本。</p>
+<p>$ sudo apt-get install nodejs $ sudo apt-get install npm </p>
+<p>b. 本博客采用第二种方法，首先官网下载最新版，然后解压。将node,npm命令设置全局命令：</p>
+<p>$ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/bin/node /usr/local/bin/node $ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/bin/npm /usr/local/bin/npm 1 2</p>
+<p>查看版本：</p>
+<p>$ node -v $ npm -v </p>
+<p> 3、 安装hexo</p>
+<p>$ npm install -g hexo-cli 1 hexo-cli安装路径/home/dudefu/Documents/node-v8.6.0-linux-x64/lib/node_modules/hexo-cli，此时输入命令hexo会提示“未找到命令”，此时要将hexo-cli/bin/文件夹下的hexo命令设置为全局：</p>
+<p>$ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/lib/node_modules/hexo-cli/bin/ $ hexo /usr/local/bin/hexo 1 2 再输入hexo命令可以正常显示。 创建一个空文件夹，此处名为hexo：</p>
+<p>$ mkdir hexo $ cd hexo $ hexo init . $ npm install $  和 npm install hexo-deployer-git 到此，hexo安装完毕。浏览器输入本地，前面配置均正确的情况下，正常显示博客首页。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/" data-id="cjm0lu4vv0008wlfit73snnzp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用hexo，如果换了电脑怎么更新博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

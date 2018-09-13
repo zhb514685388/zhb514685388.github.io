@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MYSQL数据库笔记_3之日期处理 | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、关于MYSQL中的日期处理    1.1 第一个数据库处理日期的时候，采用的机制是不同的，日期处理都有自己的一套机制。    所以在实际开发中，表中的字段定义为DATA类型，这种情况很少。因为一旦使用日期类型，    那么其他程序将不能够通用。实际开发中，一般会使用‘日期字符串‘来表示日期。 2、日期处理函数： - str_to_date - date_formate 3、str_to_dat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库笔记_3之日期处理">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-3之日期处理/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="1、关于MYSQL中的日期处理    1.1 第一个数据库处理日期的时候，采用的机制是不同的，日期处理都有自己的一套机制。    所以在实际开发中，表中的字段定义为DATA类型，这种情况很少。因为一旦使用日期类型，    那么其他程序将不能够通用。实际开发中，一般会使用‘日期字符串‘来表示日期。 2、日期处理函数： - str_to_date - date_formate 3、str_to_dat">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T12:41:24.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库笔记_3之日期处理">
+<meta name="twitter:description" content="1、关于MYSQL中的日期处理    1.1 第一个数据库处理日期的时候，采用的机制是不同的，日期处理都有自己的一套机制。    所以在实际开发中，表中的字段定义为DATA类型，这种情况很少。因为一旦使用日期类型，    那么其他程序将不能够通用。实际开发中，一般会使用‘日期字符串‘来表示日期。 2、日期处理函数： - str_to_date - date_formate 3、str_to_dat">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MYSQL数据库笔记-3之日期处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/10/MYSQL数据库笔记-3之日期处理/" class="article-date">
+  <time datetime="2018-08-10T08:16:07.000Z" itemprop="datePublished">2018-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库笔记_3之日期处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、关于MYSQL中的日期处理<br>    1.1 第一个数据库处理日期的时候，采用的机制是不同的，日期处理都有自己的一套机制。<br>    所以在实际开发中，表中的字段定义为DATA类型，这种情况很少。因为一旦使用日期类型，<br>    那么其他程序将不能够通用。实际开发中，一般会使用‘日期字符串‘来表示日期。</p>
+<p>2、日期处理函数：</p>
+<pre><code>- str_to_date
+- date_formate
+</code></pre><p>3、str_to_date<br>    3.1 该函数作用：将’日期字符串‘转换成’日期类型‘数据。[varchar–&gt;date]<br>    3.2 该函数的执行结果是DATE类型<br>    3.3 格式：<br>        str_to_date(‘日期字符串’,’日期格式’)<br><a id="more"></a><br>    3.4 MYSQL日期格式：<br>        %Y    年<br>        %M  月<br>        %d  日<br>        %H  时<br>        %i  分<br>        %s  秒</p>
+<pre><code>3.5 例：查询出1980-12-17入职的员工
+
+    mysql&gt; select ename,hiredate from emp where hiredate=&apos;1980-12-17&apos;;
+    +--------+------------+
+    | ename  | hiredate   |
+    +--------+------------+
+    | SIMITH | 1980-12-17 |
+    +--------+------------+
+    MYSQL默认的日期格式%Y-%m-%d,以上的日期字符串’1980-12-17‘正好和默认的日期格式一样，存在了自动类型转换，自动将日期字符串转换成了日期类型，所以以上查询可以查询出结果。
+
+    mysql&gt; select ename,hiredate from emp where hiredate=&apos;12-17-1980&apos;;
+    Empty set, 2 warnings (0.00 sec)
+    &apos;12-17-1980&apos; 日期字符串和MYSQL默认的日期格式不同
+    hiredate是DATE类型，&apos;12-17-1980&apos;是一个字符串varchar类型，类型不匹配。所以无法查询结果，会有错误发生。
+
+    纠正以上错误：
+    mysql&gt; select ename,hiredate from emp where hiredate=str_to_date(&apos;12-17-1980&apos;,&apos;%m-%d-%Y&apos;);
+    +--------+------------+
+    | ename  | hiredate   |
+    +--------+------------+
+    | SIMITH | 1980-12-17 |
+    +--------+------------+
+
+3.6例：
+创建学生表：
+create table t_student(
+    id int(10),
+    name varchar(32),
+    birth date
+);
+
+插入数据：
+insert into t_student(id,name,birth) values(1,&apos;jack&apos;,&apos;1980-10-11&apos;);
+以上可以执行，因为格式和默认日期格式相同，所以自动转换类型。
+
+insert into t_student(id,name,birth) values(2,&apos;road&apos;,&apos;10-15-1982&apos;);
+ERROR 1292 (22007): Incorrect date value: &apos;10-15-1982&apos; for column &apos;birth&apos; at row 1
+以上发生错误：
+    1、和默认格式不同
+    2、&apos;10-15-1982&apos;是varchar类型，和DATE类型不同
+
+纠正：
+insert into t_student(id,name,birth) values(2,&apos;road&apos;,str_to_date(&apos;10-15-1982&apos;,&apos;%m-%d-%Y&apos;));
+</code></pre><p>4、date_format<br>    4.1 作用：将日期类型DATE转换成具有特定格式的日期字符串varchar[date–&gt;varchar]</p>
+<pre><code>4.2 运算结果：varchar类型
+
+4.3 语法格式：
+    date_format(日期类型数据，&apos;日期格式&apos;)
+
+4.4 例：查询员工的入职日期，以‘%m-%d-%Y’的格式显示到窗口中
+mysql&gt; select ename,date_format(hiredate,&apos;%m-%d-%Y&apos;) hiredate from emp;
++--------+------------+
+| ename  | hiredate   |
++--------+------------+
+| SIMITH | 12-17-1980 |
+| ALLEN  | 02-20-1981 |
+| WARD   | 02-22-1981 |
+| JONES  | 04-02-1981 |
+| MARTIN | 09-28-1981 |
+| BLAKE  | 05-01-1981 |
+| CLARK  | 06-09-1981 |
+| SCOTT  | 04-19-1987 |
+| KING   | 11-17-1981 |
+| TURNER | 09-08-1981 |
+| ADAMS  | 05-23-1987 |
+| JAMES  | 12-03-1981 |
+| FORD   | 12-03-1981 |
+| MILLER | 01-23-1982 |
++--------+------------+
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-3之日期处理/" data-id="cjm0lu4vo0002wlfijcqia0ya" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-4之连接查询/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MYSQL数据库笔记_4之连接查询
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MYSQL数据库笔记_2之分组函数及查询函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

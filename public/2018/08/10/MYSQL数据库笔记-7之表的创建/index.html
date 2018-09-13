@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MYSQL数据库笔记_7之表的创建 | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="表 1、表格，用来存储数据，表格是一种结构化文件 2、表格行被 称为记录（表中的数据），表格列被称为字段。 3、字段的属性：字段名称、字段数据类型、字段长度、字段约束">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库笔记_7之表的创建">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-7之表的创建/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="表 1、表格，用来存储数据，表格是一种结构化文件 2、表格行被 称为记录（表中的数据），表格列被称为字段。 3、字段的属性：字段名称、字段数据类型、字段长度、字段约束">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T12:41:24.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库笔记_7之表的创建">
+<meta name="twitter:description" content="表 1、表格，用来存储数据，表格是一种结构化文件 2、表格行被 称为记录（表中的数据），表格列被称为字段。 3、字段的属性：字段名称、字段数据类型、字段长度、字段约束">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MYSQL数据库笔记-7之表的创建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/" class="article-date">
+  <time datetime="2018-08-10T08:20:24.000Z" itemprop="datePublished">2018-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库笔记_7之表的创建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>表</p>
+<p>1、表格，用来存储数据，表格是一种结构化文件</p>
+<p>2、表格行被 称为记录（表中的数据），表格列被称为字段。</p>
+<p>3、字段的属性：字段名称、字段数据类型、字段长度、字段约束</p>
+<a id="more"></a>
+<p>4、创建表的语法：<br>    create table tablename(<br>        colunmnamedatatype(length),<br>        colunmnamedatatype(length),<br>        colunmnamedatatype(length),<br>        colunmnamedatatype(length),<br>        colunmnamedatatype(length)<br>    );</p>
+<p>5、关于MYSQL数据库中的类型：</p>
+<pre><code>- varchar
+    可变长度字符串
+    varchar（3）表示存储字符串长度不能超过3
+- char
+    定长字符串
+    char（3）表示存储字符串长度不能超过3
+
+varchar和char对比：
+        - 都是字符串类型
+        - varchar比较智能，可能根据实际的数据长度分配空间，比较节省空间，但是在分配的时候需要执行相关的判断程序，效率较低。
+        - char不需要动态分配空间，所以执行效率很高，但是可能会导致空间浪费。
+        - 若字段中的数据不具备伸缩性，建议采用char类型存储。
+        - 若字段中的数据具备很强伸缩性，建议采用varchar类型存储。
+
+- int
+    整型
+    int（3）表示最大可以存储999
+- bigint
+    长整型
+- float
+    浮点型单精度
+    float（7,2）7表示7个有效数字，2表示小数位
+- double
+    浮点型双精度
+- date
+    日期类型
+    在实际开发中为了通用，所以日期类型一般不用，采用字符器串代替日期比较多。
+- blob
+    binary large object 二进制大对象
+    专门存储图片声音视频等数据
+    数据库中存储一个图片是很见的，但是存储一个较大的视频是很少的，一般都 是提供一个视频的的链接地址。
+- clob
+    charactor large object 字符大对象
+    可以存储一个比较大的文本，4G +的字符串
+- 其它。。。
+</code></pre><p>6、创建表格（学生表）<br>    建立学生信息表，字段包括：学号、姓名、性别、出生日期、eamil</p>
+<p>create table t_student(<br>    id int(10),<br>    name varchar(32),<br>    sex char(1),<br>    birth date,<br>    email varchar(128)<br>);</p>
+<pre><code>注：表格的名字是好以t_或tbl开头，增强可读性
+    varchar长度最好是2的倍数，方便存储中文
+</code></pre><p>删除表格：<br>    drop table t_student;这种删除方式，若数据库没有这样的表格，报错<br>    drop table if exists t_student;最好采用这种方式，只有MYSQL才能用</p>
+<p>7、向t_student表格中插入数据<br>    7.1语法格式：<br>        insert into tablename(columnname1,columnname2..) values(value1,value2…)<br>        字段和值必须一一对应，个数必须相同，数据类型必须一致<br>    7.2 向t_student插入数据<br>        insert into t_student(id,name,sex,birth,email) values(1,’zhangsan’,’m’,’1987-09-17’,<a href="mailto:&#39;zhangsan@qq.com" target="_blank" rel="noopener">&#39;zhangsan@qq.com</a>‘);</p>
+<pre><code>insert into t_student(id,name,sex,birth,email) values(2,&apos;lisi&apos;,&apos;f&apos;,&apos;1987-09-27&apos;,&apos;lisi@qq.com&apos;);
+
+mysql&gt; select * from t_student;
++------+----------+------+------------+-----------------+
+| id   | name     | sex  | birth      | email           |
++------+----------+------+------------+-----------------+
+|    1 | zhangsan | m    | 1987-09-17 | zhangsan@qq.com |
+|    2 | lisi     | f    | 1987-09-27 | lisi@qq.com     |
++------+----------+------+------------+-----------------+
+
+insert into t_student(id,name) values(3,&apos;wangwu&apos;);
+mysql&gt; select * from t_student;
++------+----------+------+------------+-----------------+
+| id   | name     | sex  | birth      | email           |
++------+----------+------+------------+-----------------+
+|    1 | zhangsan | m    | 1987-09-17 | zhangsan@qq.com |
+|    2 | lisi     | f    | 1987-09-27 | lisi@qq.com     |
+|    3 | wangwu   | NULL | NULL       | NULL            |
++------+----------+------+------------+-----------------+
+
+当一张表没有指定约束的话，可以为null值
+
+可以向sex、birth、eamil插入值吗？
+update语句进行更新数据操作
+update t_student set sex=&apos;m&apos;,birth=&apos;1999-02-10&apos;,email=&apos;wangwu@qq.com&apos; where id=3;
+
+mysql&gt; select * from t_student;
++------+----------+------+------------+-----------------+
+| id   | name     | sex  | birth      | email           |
++------+----------+------+------------+-----------------+
+|    1 | zhangsan | m    | 1987-09-17 | zhangsan@qq.com |
+|    2 | lisi     | f    | 1987-09-27 | lisi@qq.com     |
+|    3 | wangwu   | m    | 1999-02-10 | wangwu@qq.com   |
++------+----------+------+------------+-----------------+
+</code></pre><p>关于SQL脚本：<br>    你是怎么看SQL脚本的？<br>    -该文件是一个普通的文本文件，后缀名.sql,称为SQL脚本</p>
+<pre><code>- 在SQL脚本中有大量的SQL语句，想指执行SQL语句，可以将这些SQL语句写入SQL脚本中，直接使用source执行脚本。
+source 脚本文件路径
+</code></pre><p>9、获取系统当前时间：<br>    now()获取当前时间<br>    mysql&gt; select now();<br>    +———————+<br>    | now()               |<br>    +———————+<br>    | 2018-08-10 11:45:09 |<br>    +———————+</p>
+<pre><code>创建表，机构表：
+</code></pre><p>create table t_organization(<br>    code char(10),<br>    name varchar(32),<br>    createtime date<br>);</p>
+<p>insert into t_organization(code,name,createtime) values(‘111111’,’国家外汇局’,now());<br>insert into t_organization(code,name,createtime) values(‘111112’,’北京市外汇局’,now());<br>insert into t_organization(code,name,createtime) values(‘111113’,’海南省外汇局’,now());<br>insert into t_organization(code,name,createtime) values(‘111114’,’山东省外汇局’,now());<br>insert into t_organization(code,name,createtime) values(‘111115’,’福建省外汇局’,now());</p>
+<p>10、表的复制[快速创建表格]<br>语法：create table tablename1 as select columnname1,columnname2,…from tablename2;</p>
+<p>mysql&gt; create table emp1 as select ename,job,sal from emp;<br>+——–+———–+———+<br>| ename  | job       | sal     |<br>+——–+———–+———+<br>| SIMITH | CLERK     |  800.00 |<br>| ALLEN  | SALESMAN  | 1600.00 |<br>| WARD   | SALESMAN  | 1250.00 |<br>| JONES  | MANAGER   | 2975.00 |<br>| MARTIN | SALESMAN  | 1250.00 |<br>| BLAKE  | MANAGER   | 2850.00 |<br>| CLARK  | MANAGER   | 2450.00 |<br>| SCOTT  | ANALYST   | 3000.00 |<br>| KING   | PRESIDENT | 5000.00 |<br>| TURNER | SALESMAN  | 1500.00 |<br>| ADAMS  | CLERK     | 1100.00 |<br>| JAMES  | CLERK     |  950.00 |<br>| FORD   | ANALYST   | 3000.00 |<br>| MILLER | CLERK     | 1300.00 |<br>+——–+———–+———+</p>
+<p>11、将查询结果插入某张表中<br>mysql&gt; insert into emp1 select * from emp1 where sal=3000;</p>
+<p>mysql&gt; select * from emp1;<br>+——–+———–+———+<br>| ename  | job       | sal     |<br>+——–+———–+———+<br>| SIMITH | CLERK     |  800.00 |<br>| ALLEN  | SALESMAN  | 1600.00 |<br>| WARD   | SALESMAN  | 1250.00 |<br>| JONES  | MANAGER   | 2975.00 |<br>| MARTIN | SALESMAN  | 1250.00 |<br>| BLAKE  | MANAGER   | 2850.00 |<br>| CLARK  | MANAGER   | 2450.00 |<br>| SCOTT  | ANALYST   | 3000.00 |<br>| KING   | PRESIDENT | 5000.00 |<br>| TURNER | SALESMAN  | 1500.00 |<br>| ADAMS  | CLERK     | 1100.00 |<br>| JAMES  | CLERK     |  950.00 |<br>| FORD   | ANALYST   | 3000.00 |<br>| MILLER | CLERK     | 1300.00 |<br>| SCOTT  | ANALYST   | 3000.00 |<br>| FORD   | ANALYST   | 3000.00 |<br>+——–+———–+———+</p>
+<p>12、增/删/改 表结构</p>
+<p>drop table if exists t_student;<br>create table t_student(<br>    id int(10),<br>    name varchar(32)<br>);</p>
+<p>mysql&gt; desc t_student;<br>+——-+————-+——+—–+———+——-+<br>| Field | Type        | Null | Key | Default | Extra |<br>+——-+————-+——+—–+———+——-+<br>| id    | int(10)     | YES  |     | NULL    |       |<br>| name  | varchar(32) | YES  |     | NULL    |       |<br>+——-+————-+——+—–+———+——-+</p>
+<p>*给t_student表格添加一个联系电话字段<br>alter table t_student add phone char(11) not null default ‘’;</p>
+<p>mysql&gt; desc t_student;<br>+——-+————-+——+—–+———+——-+<br>| Field | Type        | Null | Key | Default | Extra |<br>+——-+————-+——+—–+———+——-+<br>| id    | int(10)     | YES  |     | NULL    |       |<br>| name  | varchar(32) | YES  |     | NULL    |       |<br>| phone | char(11)    | NO   |     |         |       |<br>+——-+————-+——+—–+———+——-+</p>
+<p>*将t_student字段的类型和长度修改下</p>
+<p>语法：alter table 表名 modify 列名 新的类型名 新列参数;</p>
+<p>alter table t_student modify phone varchar(20);<br>mysql&gt; desc t_student;<br>+——-+————-+——+—–+———+——-+<br>| Field | Type        | Null | Key | Default | Extra |<br>+——-+————-+——+—–+———+——-+<br>| id    | int(10)     | YES  |     | NULL    |       |<br>| name  | varchar(32) | YES  |     | NULL    |       |<br>| phone | varchar(20) | YES  |     | NULL    |       |<br>+——-+————-+——+—–+———+——-+</p>
+<p>*将t_student字段的名称、类型和长度修改下</p>
+<p>语法：alter table 表名 change 旧列名 新列名 新类型 新参数;</p>
+<p>alter table t_student change phone telphone varchar(26);<br>mysql&gt; desc t_student;<br>+———-+————-+——+—–+———+——-+<br>| Field    | Type        | Null | Key | Default | Extra |<br>+———-+————-+——+—–+———+——-+<br>| id       | int(10)     | YES  |     | NULL    |       |<br>| name     | varchar(32) | YES  |     | NULL    |       |<br>| telphone | varchar(26) | YES  |     | NULL    |       |<br>+———-+————-+——+—–+———+——-+</p>
+<p>*将t_student表格中的telphone字段删除<br>alter table t_student drop telphone;<br>mysql&gt; desc t_student;<br>+——-+————-+——+—–+———+——-+<br>| Field | Type        | Null | Key | Default | Extra |<br>+——-+————-+——+—–+———+——-+<br>| id    | int(10)     | YES  |     | NULL    |       |<br>| name  | varchar(32) | YES  |     | NULL    |       |<br>+——-+————-+——+—–+———+——-+</p>
+<p>13、增/删/改表结构[insert,delete,,update]</p>
+<pre><code>13.1 update 语法格式：
+    update tablename set 字段名1=字段值，字段名2=字段值2 ..where 条件;
+
+    注：update语句没有条件限制，会将一张表中全部数据更新
+    mysql&gt; select * from t_student;
+    +------+------+
+    | id   | name |
+    +------+------+
+    |    1 | NULL |
+    |    2 | NULL |
+    +------+------+
+
+    将id=2的name改为lisi
+    update t_student set name=&apos;lisi&apos; where id=2;
+    mysql&gt; select * from t_student;
+    +------+------+
+    | id   | name |
+    +------+------+
+    |    1 | NULL |
+    |    2 | lisi |
+    +------+------+
+
+13.2 delete
+格式：delete from tablename 条件
+注：若没条件限制，会将表中记录全部删除
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-7之表的创建/" data-id="cjm0lu4vt0006wlfi4wh7is6m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-8之约束/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MYSQL数据库笔记_8之约束
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-6之limit/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MYSQL数据库笔记_6之limit</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

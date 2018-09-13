@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MYSQL数据库笔记_6之limit | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="limit 1、limit用来获取一张表中的某部分数据 2、limit只有在MYSQL中存在，不通用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库笔记_6之limit">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-6之limit/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="limit 1、limit用来获取一张表中的某部分数据 2、limit只有在MYSQL中存在，不通用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T12:41:24.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库笔记_6之limit">
+<meta name="twitter:description" content="limit 1、limit用来获取一张表中的某部分数据 2、limit只有在MYSQL中存在，不通用。">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MYSQL数据库笔记-6之limit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/10/MYSQL数据库笔记-6之limit/" class="article-date">
+  <time datetime="2018-08-10T08:19:42.000Z" itemprop="datePublished">2018-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库笔记_6之limit
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>limit</p>
+<p>1、limit用来获取一张表中的某部分数据</p>
+<p>2、limit只有在MYSQL中存在，不通用。<br><a id="more"></a><br>3、例：找出员工表中前5条记录<br>mysql&gt; select ename from emp limit 5;<br>+——–+<br>| ename  |<br>+——–+<br>| SIMITH |<br>| ALLEN  |<br>| WARD   |<br>| JONES  |<br>| MARTIN |<br>+——–+</p>
+<p>以上SQL语句的‘limit 5’中的表示从表中记录下标0开始，取5条<br>等同于下条语句：<br>select ename from emp limit 0,5;</p>
+<p>limit语法格式 ：<br>    limit 起始下标，长度<br>    起始下标没有指定，默认从0开始，0表示表中第一条记录<br>    limit 出现在SQL语句最后面；</p>
+<p>4、例：找出工资排名前5名的员工<br>mysql&gt; select ename,sal from emp order by sal desc limit 5;<br>+——-+———+<br>| ename | sal     |<br>+——-+———+<br>| KING  | 5000.00 |<br>| FORD  | 3000.00 |<br>| SCOTT | 3000.00 |<br>| JONES | 2975.00 |<br>| BLAKE | 2850.00 |<br>+——-+———+</p>
+<p>5、例：找出工资排名在 (3-9)名的员工：<br>mysql&gt; select ename,sal from emp order by sal desc limit 2,7;<br>+——–+———+<br>| ename  | sal     |<br>+——–+———+<br>| SCOTT  | 3000.00 |<br>| JONES  | 2975.00 |<br>| BLAKE  | 2850.00 |<br>| CLARK  | 2450.00 |<br>| ALLEN  | 1600.00 |<br>| TURNER | 1500.00 |<br>| MILLER | 1300.00 |<br>+——–+———+</p>
+<p>6、MYSQL中分页语句：</p>
+<p>每页显示3条记录：<br>第1页：0,3<br>第2页：3,3<br>第3页：6,3<br>第4页：9,3</p>
+<p>每页显示pageSize条记录<br>第pageNo页：(pageNo - 1) × pageSize，pageSize</p>
+<p>select<br>    a<br>from<br>    b<br>order by</p>
+<pre><code>* desc
+</code></pre><p>limit<br>    (pageNo - 1) × pageSize，pageSize;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-6之limit/" data-id="cjm0lu4vs0005wlfi8cm80bww" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MYSQL数据库笔记_7之表的创建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-5之子查询/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MYSQL数据库笔记_5之子查询</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

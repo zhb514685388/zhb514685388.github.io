@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MYSQL数据库笔记_4之连接查询 | 红兵的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="连接查询 1、什么是连接查询？ - 查询的时候只从一张表检索数据，被称为单表查询  - 在实际的开发中，数据并不是存储在一张表中的，是同时存储在多张表中，这些表和表之间存在关系，我们在检索的时候通常是需要将多张表联合起来取得有效数据，这种多表查询被称为连接查询或跨表查询。 2、根据年代分类： - SQL92 - SQL99：更新语法，主要掌握 SQL92需要能看懂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库笔记_4之连接查询">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-4之连接查询/index.html">
+<meta property="og:site_name" content="红兵的博客">
+<meta property="og:description" content="连接查询 1、什么是连接查询？ - 查询的时候只从一张表检索数据，被称为单表查询  - 在实际的开发中，数据并不是存储在一张表中的，是同时存储在多张表中，这些表和表之间存在关系，我们在检索的时候通常是需要将多张表联合起来取得有效数据，这种多表查询被称为连接查询或跨表查询。 2、根据年代分类： - SQL92 - SQL99：更新语法，主要掌握 SQL92需要能看懂">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-13T12:41:24.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库笔记_4之连接查询">
+<meta name="twitter:description" content="连接查询 1、什么是连接查询？ - 查询的时候只从一张表检索数据，被称为单表查询  - 在实际的开发中，数据并不是存储在一张表中的，是同时存储在多张表中，这些表和表之间存在关系，我们在检索的时候通常是需要将多张表联合起来取得有效数据，这种多表查询被称为连接查询或跨表查询。 2、根据年代分类： - SQL92 - SQL99：更新语法，主要掌握 SQL92需要能看懂">
+  
+    <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">红兵的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MYSQL数据库笔记-4之连接查询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/10/MYSQL数据库笔记-4之连接查询/" class="article-date">
+  <time datetime="2018-08-10T08:17:36.000Z" itemprop="datePublished">2018-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库笔记_4之连接查询
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接查询</p>
+<p>1、什么是连接查询？</p>
+<pre><code>- 查询的时候只从一张表检索数据，被称为单表查询
+
+- 在实际的开发中，数据并不是存储在一张表中的，是同时存储在多张表中，这些表和表之间存在关系，我们在检索的时候通常是需要将多张表联合起来取得有效数据，这种多表查询被称为连接查询或跨表查询。
+</code></pre><p>2、根据年代分类：</p>
+<pre><code>- SQL92
+- SQL99：更新语法，主要掌握
+SQL92需要能看懂
+</code></pre><a id="more"></a>
+<p>3、连接查询根据连接方式分类：</p>
+<pre><code>- 内连接：
+    *等值连接
+    *非等值连接
+    *自连接
+
+- 外连接
+    *左外连接(左连接)
+    *右外连接(右连接)
+
+- 全连接(暂时不掌握，很少使用)
+</code></pre><p>4、当多第表进行连接查询，若没有任何条件进行限制，会发生什么现象？<br>    例：查询每一个员工所在的部门名称，要求最终显示员工名和对应部门名。</p>
+<p>mysql&gt; select deptno,ename from emp; 员工表<br>+——–+——–+<br>| deptno | ename  |<br>+——–+——–+<br>|     20 | SIMITH |<br>|     30 | ALLEN  |<br>|     30 | WARD   |<br>|     20 | JONES  |<br>|     30 | MARTIN |<br>|     30 | BLAKE  |<br>|     10 | CLARK  |<br>|     20 | SCOTT  |<br>|     10 | KING   |<br>|     30 | TURNER |<br>|     20 | ADAMS  |<br>|     30 | JAMES  |<br>|     20 | FORD   |<br>|     10 | MILLER |<br>+——–+——–+</p>
+<p>mysql&gt; select deptno,dname from dept; 部门表<br>+——–+————-+<br>| deptno | dname       |<br>+——–+————-+<br>|     10 | ACCOUNTING  |<br>|     20 | RESEARCHING |<br>|     30 | SALES       |<br>|     40 | OPERATONS   |<br>+——–+————-+</p>
+<p>主要分析：多张表连接查询，若没有任何条件限制，会发生什么？</p>
+<p>小知识： 在进行多表连接查询时，尽量给表起别名，这样效率高，可读性高。<br>mysql&gt; select e.ename,d.dname from emp e,dept d;<br>+——–+————-+<br>| ename  | dname       |<br>+——–+————-+<br>| SIMITH | ACCOUNTING  |<br>| SIMITH | RESEARCHING |<br>| SIMITH | SALES       |<br>| SIMITH | OPERATONS   |<br>| ALLEN  | ACCOUNTING  |<br>| ALLEN  | RESEARCHING |<br>| ALLEN  | SALES       |<br>| ALLEN  | OPERATONS   |<br>| WARD   | ACCOUNTING  |<br>| WARD   | RESEARCHING |<br>| WARD   | SALES       |<br>| WARD   | OPERATONS   |<br>| JONES  | ACCOUNTING  |<br>| JONES  | RESEARCHING |<br>| JONES  | SALES       |<br>| JONES  | OPERATONS   |<br>|………………… |<br>+——–+————-+<br>56 rows in set</p>
+<p>结论：若两张表进行连接查询的时候没有任何条件限制，最终的查询结果总数是两张表记录条数乘积，需要添加限制条件。</p>
+<p>例：查询每一个员工所在的部门名称，要求最终显示员工名和对应部门名。</p>
+<p>mysql&gt; select deptno,ename from emp; 员工表<br>+——–+——–+<br>| deptno | ename  |<br>+——–+——–+<br>|     20 | SIMITH |<br>|     30 | ALLEN  |<br>|     30 | WARD   |<br>|     20 | JONES  |<br>|     30 | MARTIN |<br>|     30 | BLAKE  |<br>|     10 | CLARK  |<br>|     20 | SCOTT  |<br>|     10 | KING   |<br>|     30 | TURNER |<br>|     20 | ADAMS  |<br>|     30 | JAMES  |<br>|     20 | FORD   |<br>|     10 | MILLER |<br>+——–+——–+</p>
+<p>mysql&gt; select deptno,dname from dept; 部门表<br>+——–+————-+<br>| deptno | dname       |<br>+——–+————-+<br>|     10 | ACCOUNTING  |<br>|     20 | RESEARCHING |<br>|     30 | SALES       |<br>|     40 | OPERATONS   |<br>+——–+————-+</p>
+<p>注：在连接查询的时候虽然使用了限制条件，但是匹配的次数没有减少，还是56次，只不过这一次的结果都是有效记录。</p>
+<p>SQL92语法：内连接中的等值连接<br>mysql&gt; select e.ename,d.dname from emp e,dept d where e.deptno=d.deptno;</p>
+<p>SQL99语法：内连接中的等值连接<br>mysql&gt; select e.ename,d.dname from emp e join dept d on e.deptno=d.deptno;<br>或者<br>mysql&gt; select e.ename,d.dname from emp e inner join dept d on e.deptno=d.deptno; //inner可以省略</p>
+<p>SQL99语法：表连接独立出来了，结构更清晰。对表连接不满意的话，还要以再追加where进行过滤。<br>+——–+————-+<br>| ename  | dname       |<br>+——–+————-+<br>| SIMITH | RESEARCHING |<br>| ALLEN  | SALES       |<br>| WARD   | SALES       |<br>| JONES  | RESEARCHING |<br>| MARTIN | SALES       |<br>| BLAKE  | SALES       |<br>| CLARK  | ACCOUNTING  |<br>| SCOTT  | RESEARCHING |<br>| KING   | ACCOUNTING  |<br>| TURNER | SALES       |<br>| ADAMS  | RESEARCHING |<br>| JAMES  | SALES       |<br>| FORD   | RESEARCHING |<br>| MILLER | ACCOUNTING  |<br>+——–+————-+</p>
+<p>5、例：找出每一个员工对应的工资等级，要求显示员工名，工资，工资等级</p>
+<p>SQL99语法：内连接中的非等值连接<br>mysql&gt; select e.ename,e.sal,s.grade from emp e join salgrade s on e.sal between s.losal and s.hisal;<br>+——–+———+——-+<br>| ename  | sal     | grade |<br>+——–+———+——-+<br>| SIMITH |  800.00 |     1 |<br>| ALLEN  | 1600.00 |     3 |<br>| WARD   | 1250.00 |     2 |<br>| JONES  | 2975.00 |     4 |<br>| MARTIN | 1250.00 |     2 |<br>| BLAKE  | 2850.00 |     4 |<br>| CLARK  | 2450.00 |     4 |<br>| SCOTT  | 3000.00 |     4 |<br>| KING   | 5000.00 |     5 |<br>| TURNER | 1500.00 |     3 |<br>| ADAMS  | 1100.00 |     1 |<br>| JAMES  |  950.00 |     1 |<br>| FORD   | 3000.00 |     4 |<br>| MILLER | 1300.00 |     2 |<br>+——–+———+——-+</p>
+<p>6、找出每一个员工的上级领导，要求显示员工名以及对应的上级领导名称<br>emp a&lt;员工表&gt;<br>emp b&lt;领导表&gt;<br>条件：a.mgr=b.empno</p>
+<p>SQL99语法：内连接中的自连接<br>mysql&gt; select a.ename empname,b.ename leadername from emp a join emp b on a.mgr=b.empno;<br>+———+————+<br>| empname | leadername |<br>+———+————+<br>| SIMITH  | FORD       |<br>| ALLEN   | BLAKE      |<br>| WARD    | BLAKE      |<br>| JONES   | KING       |<br>| MARTIN  | BLAKE      |<br>| BLAKE   | KING       |<br>| CLARK   | KING       |<br>| SCOTT   | JONES      |<br>| TURNER  | BLAKE      |<br>| ADAMS   | SCOTT      |<br>| JAMES   | BLAKE      |<br>| FORD    | JONES      |<br>| MILLER  | CLARK      |<br>+———+————+</p>
+<p>7、例：找出每一个员工对应的部门名称,要求显示全部部门</p>
+<p>内连接：A表和B能够完全匹配的记录查询出来，称为内连接</p>
+<p>外连接：A表和B表能够完全匹配的记录查询出来之外，将其中一张表的记录无条件的完全查询出来，对方表没有匹配的记录，会自动模拟出NULL与之匹配，称为外连接。</p>
+<p>外连接的查询结果条数 &gt;= 内连接的查询结果条数</p>
+<p>SQL99语法：外连接中的右外连接<br>mysql&gt; select e.ename,d.dname from emp e right outter join dept d on e.deptno=d.deptno;//outer可以省略<br>mysql&gt; select e.ename,d.dname from emp e right join dept d on e.deptno=d.deptno;</p>
+<p>SQL99语法：外连接中的左外连接<br>mysql&gt; select e.ename,d.dname from dept d left outter join emp e on e.deptno=d.deptno;//outer可以省略<br>mysql&gt; select e.ename,d.dname from dept d left join emp e on e.deptno=d.deptno; </p>
+<p>注：任何一个右外连接都可以写左外连接，反之也可以</p>
+<p>+——–+————-+<br>| ename  | dname       |<br>+——–+————-+<br>| SIMITH | RESEARCHING |<br>| ALLEN  | SALES       |<br>| WARD   | SALES       |<br>| JONES  | RESEARCHING |<br>| MARTIN | SALES       |<br>| BLAKE  | SALES       |<br>| CLARK  | ACCOUNTING  |<br>| SCOTT  | RESEARCHING |<br>| KING   | ACCOUNTING  |<br>| TURNER | SALES       |<br>| ADAMS  | RESEARCHING |<br>| JAMES  | SALES       |<br>| FORD   | RESEARCHING |<br>| MILLER | ACCOUNTING  |<br>| NULL   | OPERATONS   |<br>+——–+————-+</p>
+<p>为什么inner和outter可以省略，加上去有什么好处？</p>
+<pre><code>- 可以省略，国为区分内连接和外连接依靠的不是这些关键字，而是看SQL语句中是否存在left/right，若存在，表示一定是一个外连接，其他都是内连接。
+
+- 加上去的好处是增强可读性
+</code></pre><p>8、例：找出每一个员工对应领导名，要求显示所有的员工<br>mysql&gt; select a.ename empname,b.ename leadername from emp a left join emp b on a.mgr=b.empno;<br>+———+————+<br>| empname | leadername |<br>+———+————+<br>| SIMITH  | FORD       |<br>| ALLEN   | BLAKE      |<br>| WARD    | BLAKE      |<br>| JONES   | KING       |<br>| MARTIN  | BLAKE      |<br>| BLAKE   | KING       |<br>| CLARK   | KING       |<br>| SCOTT   | JONES      |<br>| KING    | NULL       |<br>| TURNER  | BLAKE      |<br>| ADAMS   | SCOTT      |<br>| JAMES   | BLAKE      |<br>| FORD    | JONES      |<br>| MILLER  | CLARK      |<br>+———+————+</p>
+<p>9、例：找出每一个员工对应的部门名称，以及该员工对应的工资等级。要求显示员工名、部门名、工资等级。<br>mysql&gt; select e.ename,d.dname,s.grade from emp e  join dept d on e.deptno=d.deptno join salgrade s on e.sal between s.losal and s.hisal;<br>+——–+————-+——-+<br>| ename  | dname       | grade |<br>+——–+————-+——-+<br>| SIMITH | RESEARCHING |     1 |<br>| ALLEN  | SALES       |     3 |<br>| WARD   | SALES       |     2 |<br>| JONES  | RESEARCHING |     4 |<br>| MARTIN | SALES       |     2 |<br>| BLAKE  | SALES       |     4 |<br>| CLARK  | ACCOUNTING  |     4 |<br>| SCOTT  | RESEARCHING |     4 |<br>| KING   | ACCOUNTING  |     5 |<br>| TURNER | SALES       |     3 |<br>| ADAMS  | RESEARCHING |     1 |<br>| JAMES  | SALES       |     1 |<br>| FORD   | RESEARCHING |     4 |<br>| MILLER | ACCOUNTING  |     2 |<br>+——–+————-+——-+</p>
+<p>多张表进行表连接的语法格式：<br>select<br>    …<br>from<br>    a<br>join<br>    b<br>on<br>    条件<br>join<br>    c<br>on<br>    条件</p>
+<p>原理：a和b先进行表连接，接着a和c再进行表连接。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-4之连接查询/" data-id="cjm0lu4vq0003wlfigkd5qrqd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-5之子查询/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MYSQL数据库笔记_5之子查询
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/10/MYSQL数据库笔记-3之日期处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MYSQL数据库笔记_3之日期处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/">deepin下搭建基于github和hexo的个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 红兵<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
