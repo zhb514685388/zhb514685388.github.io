@@ -5,19 +5,19 @@
   
 
   
-  <title>deepin下搭建基于github和hexo的个人博客 | 红兵的博客</title>
+  <title>git从远程库同步到本地仓库 | 红兵的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="搭建步骤：１. 安装git $ sudo apt-get install git   查看git版本  $ git version">
+  <meta name="description" content="远程仓库发生改变，本地仓库没有改变 首先，查看远程仓库 git remote -v  1 $ git remote -v 2 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (fetch) 3 origin    git@github.com:{User}/Understanding_Unix-Lin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="deepin下搭建基于github和hexo的个人博客">
-<meta property="og:url" content="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/index.html">
+<meta property="og:title" content="git从远程库同步到本地仓库">
+<meta property="og:url" content="http://yoursite.com/2018/09/13/git从远程库同步到本地仓库/index.html">
 <meta property="og:site_name" content="红兵的博客">
-<meta property="og:description" content="搭建步骤：１. 安装git $ sudo apt-get install git   查看git版本  $ git version">
+<meta property="og:description" content="远程仓库发生改变，本地仓库没有改变 首先，查看远程仓库 git remote -v  1 $ git remote -v 2 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (fetch) 3 origin    git@github.com:{User}/Understanding_Unix-Lin">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-13T14:47:51.983Z">
+<meta property="og:updated_time" content="2018-09-13T14:38:11.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="deepin下搭建基于github和hexo的个人博客">
-<meta name="twitter:description" content="搭建步骤：１. 安装git $ sudo apt-get install git   查看git版本  $ git version">
+<meta name="twitter:title" content="git从远程库同步到本地仓库">
+<meta name="twitter:description" content="远程仓库发生改变，本地仓库没有改变 首先，查看远程仓库 git remote -v  1 $ git remote -v 2 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (fetch) 3 origin    git@github.com:{User}/Understanding_Unix-Lin">
   
     <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-deepin下搭建基于github和hexo的个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-git从远程库同步到本地仓库" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/" class="article-date">
-  <time datetime="2018-09-13T13:11:19.000Z" itemprop="datePublished">2018-09-13</time>
+    <a href="/2018/09/13/git从远程库同步到本地仓库/" class="article-date">
+  <time datetime="2018-09-13T13:38:19.000Z" itemprop="datePublished">2018-09-13</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      deepin下搭建基于github和hexo的个人博客
+      git从远程库同步到本地仓库
     </h1>
   
 
@@ -86,43 +86,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h3><p>１. 安装git</p>
-<pre><code>$ sudo apt-get install git 
+        <h2 id="远程仓库发生改变，本地仓库没有改变"><a href="#远程仓库发生改变，本地仓库没有改变" class="headerlink" title="远程仓库发生改变，本地仓库没有改变"></a>远程仓库发生改变，本地仓库没有改变</h2><ul>
+<li><h4 id="首先，查看远程仓库-git-remote-v"><a href="#首先，查看远程仓库-git-remote-v" class="headerlink" title="首先，查看远程仓库 git remote -v"></a>首先，查看远程仓库 git remote -v</h4></li>
+</ul>
+<pre><code>1 $ git remote -v
+2 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (fetch)
+3 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (push)
 </code></pre><ul>
-<li>查看git版本</li>
+<li><h4 id="把远程库更新到本地-git-fetch-origin-master"><a href="#把远程库更新到本地-git-fetch-origin-master" class="headerlink" title="把远程库更新到本地 git fetch origin master"></a>把远程库更新到本地 git fetch origin master</h4><a id="more"></a>
+</li>
 </ul>
-<pre><code>$ git version 
-</code></pre><a id="more"></a>
-<p>２． 安装Node.js及npm </p>
-<ul>
-<li>可以直接命令安装,但是命令安装的不是最新版本。</li>
-</ul>
-<pre><code>$ sudo apt-get install nodejs $ sudo apt-get install npm 
+<pre><code>1 $ git fetch origin master
+2 Warning: Permanently added the RSA host key for IP address &apos;{IP address such as: 192.168.1.1 }&apos; to the list of known hosts.
+3 From github.com:{User}/Understanding_Unix-Linux_Programmin
+4 branch            master     -&gt; FETCH_HEAD
 </code></pre><ul>
-<li>本博客采用第二种方法，首先官网下载最新版，然后解压。将node,npm命令设置全局命令：</li>
+<li><h4 id="比较远程更新和本地版本库的差异-git-log-master-origin-master"><a href="#比较远程更新和本地版本库的差异-git-log-master-origin-master" class="headerlink" title="比较远程更新和本地版本库的差异 git log master.. origin/master"></a>比较远程更新和本地版本库的差异 git log master.. origin/master</h4></li>
 </ul>
-<pre><code>$ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/bin/node /usr/local/bin/node $ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/bin/npm /usr/local/bin/npm 1 2
+<pre><code>1 $ git log master.. origin/master
+2 commit ce39f8b3eeee898a2a038444f897f2aef3673493
+3 Author: {User} &lt;794870409@qq.com&gt;
+4 Date:   Fri Feb 26 14:14:39 2016 +0800
+5
+6 {The context origin added ... }
 </code></pre><ul>
-<li>查看版本：</li>
+<li><h4 id="合并远程库-git-merge-origin-master"><a href="#合并远程库-git-merge-origin-master" class="headerlink" title="合并远程库 git merge origin/master"></a>合并远程库 git merge origin/master</h4></li>
+<li><p>有差异</p>
+</li>
 </ul>
-<pre><code>$ node -v $ npm -v 
-</code></pre><p> 3、 安装hexo</p>
-<pre><code>$ npm install -g hexo-cli 
-1 hexo-cli安装路径/home/dudefu/Documents/node-v8.6.0-linux-x64/lib/node_modules/hexo-cli，此时输入命令hexo会提示“未找到命令”，此时要将hexo-cli/bin/文件夹下的hexo命令设置为全局：
-
-$ sudo ln -s /home/dudefu/Documents/node-v8.6.0-linux-x64/lib/node_modules/hexo-cli/bin/     
-$ hexo /usr/local/bin/hexo 1 2 再输入hexo命令可以正常显示。 创建一个空文件夹，此处名为hexo：
-
-$ mkdir hexo 
-$ cd hexo 
-$ hexo init . 
-$ npm install 
-$  和 npm install hexo-deployer-git 到此，hexo安装完毕。浏览器输入本地，前面配置均正确的情况下，正常显示博客首页。
+<pre><code>1 $ git merge origin/master
+2 Updating eb32b20..ce39f8b
+3 Fast-forward
+4  README.md | 2 +-
+5  1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre><ul>
+<li>无差异</li>
+</ul>
+<pre><code>1 $ git merge origin/master
+2 Already up-to-date
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/" data-id="cjm0r8un20008lqfi79jpchmj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/13/git从远程库同步到本地仓库/" data-id="cjm0r8un30009lqfipaquy1h0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -131,19 +137,10 @@ $  和 npm install hexo-deployer-git 到此，hexo安装完毕。浏览器输入
     
 <nav id="article-nav">
   
-    <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          使用hexo，如果换了电脑怎么更新博客
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">使用hexo，如果换了电脑怎么更新博客</div>
     </a>
   
 </nav>

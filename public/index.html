@@ -62,6 +62,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git从远程库同步到本地仓库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/13/git从远程库同步到本地仓库/" class="article-date">
+  <time datetime="2018-09-13T13:38:19.000Z" itemprop="datePublished">2018-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/13/git从远程库同步到本地仓库/">git从远程库同步到本地仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="远程仓库发生改变，本地仓库没有改变"><a href="#远程仓库发生改变，本地仓库没有改变" class="headerlink" title="远程仓库发生改变，本地仓库没有改变"></a>远程仓库发生改变，本地仓库没有改变</h2><ul>
+<li><h4 id="首先，查看远程仓库-git-remote-v"><a href="#首先，查看远程仓库-git-remote-v" class="headerlink" title="首先，查看远程仓库 git remote -v"></a>首先，查看远程仓库 git remote -v</h4></li>
+</ul>
+<pre><code>1 $ git remote -v
+2 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (fetch)
+3 origin    git@github.com:{User}/Understanding_Unix-Linux_Programming.git (push)
+</code></pre><ul>
+<li><h4 id="把远程库更新到本地-git-fetch-origin-master"><a href="#把远程库更新到本地-git-fetch-origin-master" class="headerlink" title="把远程库更新到本地 git fetch origin master"></a>把远程库更新到本地 git fetch origin master</h4>
+        
+          <p class="article-more-link">
+            <a href="/2018/09/13/git从远程库同步到本地仓库/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/13/git从远程库同步到本地仓库/" data-id="cjm0r8un30009lqfipaquy1h0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用hexo，如果换了电脑怎么更新博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" class="article-date">
@@ -85,13 +133,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：</p>
-<p>使用git clone -b hexo <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:zhb514685388/zhb514685388.github.io.git拷贝仓库（默认分支为hexo）；</p>
-<p>在本地新拷贝的hb514685388.github.io文件夹下通过Git bash依次执行下列指令：<br>npm install hexo、<br>npm install、<br>npm install hexo-deployer-git（记得，不需要hexo init这条指令）</p>
-
+<pre><code>git clone -b hexo git@github.com:zhb514685388/zhb514685388.github.io.git拷贝仓库（默认分支为hexo）；
+</code></pre><p>在本地新拷贝的hb514685388.github.io文件夹下通过Git bash依次执行下列指令：</p>
+<pre><code>npm install hexo、
+npm install、
+npm install hexo-deployer-git
+（记得，不需要hexo init这条指令）
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" data-id="cjm0lu4vy000awlfioljxa051" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/13/使用hexo，如果换了电脑怎么更新博客/" data-id="cjm0r8un7000blqfiqqpfdr5t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -123,10 +175,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>搭建步骤：<br>1、 安装git</p>
-<p>$ sudo apt-get install git </p>
-<p>查看git版本</p>
-<p>$ git version<br>
+        <h3 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h3><p>１. 安装git</p>
+<pre><code>$ sudo apt-get install git 
+</code></pre><ul>
+<li>查看git版本</li>
+</ul>
+<pre><code>$ git version 
+</code></pre>
         
           <p class="article-more-link">
             <a href="/2018/09/13/deepin下搭建基于github和hexo的个人博客/#more">Read More</a>
@@ -135,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/" data-id="cjm0lu4vv0008wlfit73snnzp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/13/deepin下搭建基于github和hexo的个人博客/" data-id="cjm0r8un20008lqfi79jpchmj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -180,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/13/hello-world/" data-id="cjm0lu4vw0009wlfiskntyskb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/13/hello-world/" data-id="cjm0r8un4000alqfinzfjkzlc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-8之约束/" data-id="cjm0lu4vu0007wlfialjjft8e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-8之约束/" data-id="cjm0r8un10007lqfih915660n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -270,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-7之表的创建/" data-id="cjm0lu4vt0006wlfi4wh7is6m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-7之表的创建/" data-id="cjm0r8un00006lqfinvme7hku" class="article-share-link">Share</a>
       
       
     </footer>
@@ -313,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-6之limit/" data-id="cjm0lu4vs0005wlfi8cm80bww" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-6之limit/" data-id="cjm0r8umy0005lqfi2bfic462" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-5之子查询/" data-id="cjm0lu4vr0004wlfibujppt87" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-5之子查询/" data-id="cjm0r8umx0004lqfihzvdejwu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -407,7 +462,7 @@ SQL92需要能看懂
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-4之连接查询/" data-id="cjm0lu4vq0003wlfigkd5qrqd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-4之连接查询/" data-id="cjm0r8umw0003lqfibnngqaqh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -452,48 +507,7 @@ SQL92需要能看懂
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-3之日期处理/" data-id="cjm0lu4vo0002wlfijcqia0ya" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MYSQL数据库笔记-2之分组函数及查询函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/" class="article-date">
-  <time datetime="2018-08-10T04:47:47.000Z" itemprop="datePublished">2018-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/">MYSQL数据库笔记_2之分组函数及查询函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>分组函数及分组查询<br>1、分组函数：<br>    分组函数/聚合函数/多行处理函数：<br>        sum 求和<br>        count 记数<br>            count(comm)表示这个字段里面不为空的数量<br>            count(*) 满足条件的所有记录总数<br>        avg 求平均值<br>        max 取最大值<br>        min 取最小值<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-2之分组函数及查询函数/" data-id="cjm0lu4vm0001wlfilurb9kmv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-3之日期处理/" data-id="cjm0r8ums0001lqfi4yfjhlj1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -539,6 +553,10 @@ SQL92需要能看懂
       <ul>
         
           <li>
+            <a href="/2018/09/13/git从远程库同步到本地仓库/">git从远程库同步到本地仓库</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/13/使用hexo，如果换了电脑怎么更新博客/">使用hexo，如果换了电脑怎么更新博客</a>
           </li>
         
@@ -552,10 +570,6 @@ SQL92需要能看懂
         
           <li>
             <a href="/2018/08/10/MYSQL数据库笔记-8之约束/">MYSQL数据库笔记_8之约束</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/10/MYSQL数据库笔记-7之表的创建/">MYSQL数据库笔记_7之表的创建</a>
           </li>
         
       </ul>
