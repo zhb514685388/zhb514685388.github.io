@@ -4,6 +4,7 @@ date: 2018-09-13 21:17:07
 tags:
 ---
 
+
 本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：
 
   	git clone -b hexo git@github.com:zhb514685388/zhb514685388.github.io.git拷贝仓库（默认分支为hexo）；

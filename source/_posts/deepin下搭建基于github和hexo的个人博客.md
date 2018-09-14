@@ -4,8 +4,19 @@ date: 2018-09-13 21:11:19
 tags:
 ---
 
-### 搭建步骤： 
-１. 安装git
+### 搭建步骤：
+---
+
+[1.安装git](#1)
+
+[2.安装Node.js及npm](#2)
+
+[3.安装hexo](#3)
+
+---
+
+
+<span id="1">１. 安装git</span>
 
 
 		$ sudo apt-get install git 
@@ -16,7 +27,7 @@ tags:
 		$ git version 
 <!--more-->
 
-２． 安装Node.js及npm 
+<span id="2">２． 安装Node.js及npm</span> 
 
 - 可以直接命令安装,但是命令安装的不是最新版本。
 
@@ -34,7 +45,7 @@ tags:
 
 		$ node -v $ npm -v 
 
- 3、 安装hexo
+ <span id="3">3、 安装hexo</span>
 
 	$ npm install -g hexo-cli 
 	
