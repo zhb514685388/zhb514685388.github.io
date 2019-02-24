@@ -18,8 +18,20 @@
             <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
           </p>
         <% } %>
-      <% } else { %>
-        <%- post.content %>
+      <% } else { %> 
+      
+
+        <% if (  post.toc || ( theme.toc && post.toc !== false) && !index){ %>
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        <a class="js-toggle-toc" href="javascript:void(0)"></a>
+        <div class="toc-content">
+          <%- toc(post.content) %>
+        </div>
+      </div>
+      <% } %>
+
+		<%- post.content %>
       <% } %>
     </div>
     <footer class="article-footer">
