@@ -5,19 +5,19 @@
   
 
   
-  <title>MYSQL数据库笔记_5之子查询 | 红兵的博客</title>
+  <title>hexo命令 | 红兵的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="子查询 1、什么是子查询？ - select 嵌套 select语句 2、子查询可以出现在哪？    select ..(select)    from ..(select)    where.. (select)">
+  <meta name="description" content="hexo new &amp;quot;postName&amp;quot; #新建文章 hexo new page &amp;quot;pageName&amp;quot; #新建页面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MYSQL数据库笔记_5之子查询">
-<meta property="og:url" content="http://yoursite.com/2018/08/10/MYSQL数据库笔记-5之子查询/index.html">
+<meta property="og:title" content="hexo命令">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/hexo命令/index.html">
 <meta property="og:site_name" content="红兵的博客">
-<meta property="og:description" content="子查询 1、什么是子查询？ - select 嵌套 select语句 2、子查询可以出现在哪？    select ..(select)    from ..(select)    where.. (select)">
+<meta property="og:description" content="hexo new &amp;quot;postName&amp;quot; #新建文章 hexo new page &amp;quot;pageName&amp;quot; #新建页面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-23T22:06:02.021Z">
+<meta property="og:updated_time" content="2019-02-24T01:10:04.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MYSQL数据库笔记_5之子查询">
-<meta name="twitter:description" content="子查询 1、什么是子查询？ - select 嵌套 select语句 2、子查询可以出现在哪？    select ..(select)    from ..(select)    where.. (select)">
+<meta name="twitter:title" content="hexo命令">
+<meta name="twitter:description" content="hexo new &amp;quot;postName&amp;quot; #新建文章 hexo new page &amp;quot;pageName&amp;quot; #新建页面">
   
     <link rel="alternate" href="/atom.xml" title="红兵的博客" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-MYSQL数据库笔记-5之子查询" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-hexo命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/10/MYSQL数据库笔记-5之子查询/" class="article-date">
-  <time datetime="2018-08-10T08:18:38.000Z" itemprop="datePublished">2018-08-10</time>
+    <a href="/2019/02/24/hexo命令/" class="article-date">
+  <time datetime="2019-02-24T01:04:34.000Z" itemprop="datePublished">2019-02-24</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MYSQL数据库笔记_5之子查询
+      hexo命令
     </h1>
   
 
@@ -86,23 +86,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>子查询</p>
-<p>1、什么是子查询？</p>
-<pre><code>- select 嵌套 select语句
-</code></pre><p>2、子查询可以出现在哪？<br>    select ..(select)<br>    from ..(select)<br>    where.. (select)</p>
-<a id="more"></a>
-<p>where 后面使用子查询<br>3、例：找出薪水比公司平均薪水高的员工，要求显示员工名和薪水<br>第一步：求平均薪水<br>mysql&gt; select avg(sal) asal from emp;<br>+————-+<br>| asal        |<br>+————-+<br>| 2073.214286 |<br>+————-+</p>
-<p>第二步:将上面的表当作临时表<br>mysql&gt; select ename,sal from emp where e.sal &gt; (select avg(sal) from emp);<br>+——-+———+<br>| ename | sal     |<br>+——-+———+<br>| JONES | 2975.00 |<br>| BLAKE | 2850.00 |<br>| CLARK | 2450.00 |<br>| SCOTT | 3000.00 |<br>| KING  | 5000.00 |<br>| FORD  | 3000.00 |<br>+——-+———+</p>
-<p>4、from面使用子查询 例：<br>找出每个部门的平均薪水，并且要求显示平均薪水的薪水等级</p>
-<p>第一步：求部门平均薪水<br>mysql&gt; select deptno,avg(sal) asal from emp group by deptno;<br>+——–+————-+<br>| deptno | asal        |<br>+——–+————-+<br>|     10 | 2916.666667 |<br>|     20 | 2175.000000 |<br>|     30 | 1566.666667 |<br>+——–+————-+</p>
-<p>第二步：将上面的表当作临时表<br>mysql&gt; select t.deptno,t.asal,s.grade from (select deptno,avg(sal) asal from emp group by deptno) t join salgrade s on t.asal between s.losal and s.hisal;<br>+——–+————-+——-+<br>| deptno | asal        | grade |<br>+——–+————-+——-+<br>|     10 | 2916.666667 |     4 |<br>|     20 | 2175.000000 |     4 |<br>|     30 | 1566.666667 |     3 |<br>+——–+————-+——-+</p>
-<p>5、select后面使用子查询[了解]</p>
-<p>6、union 将两条语句联合 [了解]<br>select ename,job from emp where job=’manger’<br>union<br>select ename,job from emp where job=’salesman’</p>
-
+        <pre><code>hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+</code></pre><a id="more"></a>
+<pre><code>hexo generate  生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+</code></pre><p>默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？<br>答案是在合适的位置加上 !–more–&gt;</p>
+<p>发布文章步骤：</p>
+<pre><code>1、hexo new &quot;postName&quot; #新建文章输入内容
+2、hexo clean 清空缓存
+3、hexo g
+4、hexo d
+5、git add .--&gt;git commit -m &quot;&quot; --&gt;git push orgin hexo //备份
+6、hexo s
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/10/MYSQL数据库笔记-5之子查询/" data-id="cjsi7wjg80003xdc34hrkss6l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/24/hexo命令/" data-id="cjsi7wjgd0008xdc3mo3ubaug" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,19 +115,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/08/10/MYSQL数据库笔记-6之limit/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          MYSQL数据库笔记_6之limit
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/10/MYSQL数据库笔记-4之连接查询/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">MYSQL数据库笔记_4之连接查询</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>

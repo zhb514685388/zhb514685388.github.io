@@ -93,6 +93,30 @@ tags:
       repo: https://github.com/zhb514685388/zhb514685388.github.io.git
       branch: master
 
+ 6、布署到博客上
+ 	
+    1、 hexo new "postName" #新建文章输入内容
+    2、 hexo clean 清空缓存
+    3、 hexo g
+    4、 hexo d
+    5、 git add .-->git commit -m "  " 
+如果是第一次使用git，在使用git的时候会提示输入用户名和密码，用户名是自己的注册邮箱。 
+
+	git remote add origin https://github.com/zhb514685388/zhb514685388.github.io.git 
+    
+    
+ 推送到远程仓库（github） 
+这里建议创建一个新的分支hexo，用于管理hexo文件。提交的的时候只提交hexo网站html、css、等源文件。而默认的master用来部署更新项目
+
+创建并切换到新建分支： 
+	
+    git checkout -b hexo 
+    
+将分支推送到远程仓库： 
+
+	git push origin hexo 
+    git push orgin hexo //备份
+    hexo s
  
  
 
