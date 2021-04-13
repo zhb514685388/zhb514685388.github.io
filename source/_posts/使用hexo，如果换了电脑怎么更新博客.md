@@ -13,5 +13,5 @@ tags:
 
 	npm install hexo、
 	npm install、
-	npm install hexo-deployer-git
-    （记得，不需要hexo init这条指令）
+	npm install hexo-deployer-git  扩展插件帮助连接仓库
+	（记得，不需要hexo init这条指令）
