@@ -46,7 +46,7 @@ description:  主要是Linux Grub引导界面的美化
 
 我的电脑上输出为linux510.preset,则在终端输入：
       
-      mkinitcipo -p linux510
+      mkinitcpio -p linux510
 
 >重建initrd镜像
 
